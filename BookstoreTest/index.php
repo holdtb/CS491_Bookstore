@@ -18,7 +18,7 @@
     <link href="bootstrap/css/cover.css" rel="stylesheet">
   </head>
 
-  <body background="header-bg.jpg">
+  <body>
     <div class="site-wrapper">
       <div class="site-wrapper-inner">
         <div class="cover-container">
