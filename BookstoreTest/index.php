@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="CSCI 491 Bookstore Team">
+    <meta name="author" content="Matthew Ryan Lam" >
     <link rel="icon" href="images/icon.ico">
 
     <title>Home -- Bookstore</title>
@@ -18,7 +18,7 @@
     <link href="bootstrap/css/cover.css" rel="stylesheet">
   </head>
 
-  <body>
+  <body background="header-bg.jpg">
     <div class="site-wrapper">
       <div class="site-wrapper-inner">
         <div class="cover-container">
