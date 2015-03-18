@@ -36,7 +36,7 @@
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
                 <li><a href="index.php">Home</a></li>
-                <li><a href="#">Buy</a></li>
+                <li><a href="landing.php">Buy</a></li>
                 <li><a href="#">Sell</a></li>
                 <li class="active"><a href="#">About</a></li>
               </ul>
@@ -114,7 +114,7 @@
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
           <img class="img-circle" src="images/personPlaceholder.jpg" alt="Generic placeholder image" style="width: 140px; height: 140px;">
-          <h2>Vadim Belenenko</h2>
+          <h2>Vadim Belonenko</h2>
           <p>Everything you wanted to know about Vadim Belonenko here...</p>
           <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
         </div><!-- /.col-lg-4 -->

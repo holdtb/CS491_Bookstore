@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="Matthew Ryan Lam" >
+    <meta name="author" content="CSCI 491 Bookstore Team">
     <link rel="icon" href="images/icon.ico">
 
     <title>Home -- Bookstore</title>
@@ -28,7 +28,7 @@
               <nav>
                 <ul class="nav masthead-nav">
                   <li class="active"><a href="#">Home</a></li>
-                  <li><a href="#">Buy</a></li>
+                  <li><a href="landing.php">Buy</a></li>
                   <li><a href="#">Sell</a></li>
                   <li><a href="about.php">About</a></li>
                 </ul>
