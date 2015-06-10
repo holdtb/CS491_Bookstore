@@ -13,6 +13,23 @@
 */
 	session_start();		
 
+		 $identity = $_GET["uid"];
+		  if(is_null($identity))
+		    if(isset($_SESSION["uid"]))
+		      $identity = $_SESSION["uid"];
+
+		  if(is_null($identity) || $identity == ""){
+		    //Not logged in. Redirect.
+		     header('Location: http://west.wwu.edu/stcsp/stc000/CAS/buying.asp');
+		  }else{
+		      //$_SESSION['uid'] = $identity;
+		  	  $identity = $_SESSION['uid'];
+		      $buyerUID = $_SESSION['uid'];
+		  }
+
+
+
+
 
 	$servername = "localhost";
 	$username = "root";
@@ -26,8 +43,8 @@
 	}
 
 
- 	$offer_id = $_GET['order'];
-    $sql = "SELECT * FROM ORDERS WHERE orderID='$offer_id'";
+ 	$order_id = $_GET['order'];
+    $sql = "SELECT * FROM ORDERS WHERE orderID='$order_id'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_array($result);
     $isbn = $row['isbn'];
@@ -35,6 +52,7 @@
     $seller_id = $row['sellerUID'];
     $location = $row['location'];
     $condition = $row['condition'];
+    $offer_id = $row['orderID'];
     
     $price = $row['price'];
 
@@ -56,17 +74,20 @@
 
 
   echo "<h2>Attempting to make an offer on book...</h2></br></br>";
+  echo "order id: " . $order_id;
 
 
   /*
 	Update OFFERS table with the new offer
   */
-	$buyerUID = $_SESSION['uid'];
-	$update_sql = "INSERT INTO OFFERS(orderID, buyerUID, price) VALUES ('offer_id', '$buyer', '$price')";
+	
+	$update_sql = "INSERT INTO OFFERS(orderID, buyerUID, sellerUID, price) VALUES ('$offer_id', '$buyerUID', '$seller_id','$price')";
 	$result = mysqli_query($conn, $update_sql);
 
+	$increment_sql = "UPDATE ORDERS SET offers = offers + 1 WHERE orderID='$order_id'";
+	$result = mysqli_query($conn, $increment_sql);
 
-  echo "Sending offer to " . $seller_id . "</br>";
+ 	echo "Sending offer to " . $seller_id . "</br>";
 	//error_reporting(E_ALL);
 	error_reporting(E_STRICT);
 
@@ -86,7 +107,7 @@
                             <b>Price: </b>$'. $price . '</br></p>
 
                             </br></br>To complete the sale, please propose a date, location, and time to sell 
-                            the book.</br> Please visit <a href="http://192.241.201.209/BookstoreTest/your_orders.php">Your Orders</a>.';
+                            the book.</br> Please visit <a href="http://192.241.201.209/BookstoreTest/view_offers.php">Your Offers</a>.';
 
 
 	$mail->IsSMTP(); // telling the class to use SMTP
