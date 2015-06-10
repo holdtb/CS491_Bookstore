@@ -1,23 +1,22 @@
 <?php
 
+session_start();
+
   if(isset($_SESSION['uid'])){
     //Already have a session
-    echo "Set";
   }else{
-    session_start();
+    
+    $identity = $_GET["uid"];
+    if(is_null($identity))
+      if(isset($_SESSION["uid"]))
+        $identity = $_SESSION["uid"];
 
-  }
-
- $identity = $_GET["uid"];
-  if(is_null($identity))
-    if(isset($_SESSION["uid"]))
-      $identity = $_SESSION["uid"];
-
-  if(is_null($identity) || $identity == ""){
-    //Not logged in. Redirect.
-     header('Location: http://west.wwu.edu/stcsp/stc000/CAS/buying.asp');
-  }else{
-      $_SESSION['uid'] = $identity;
+    if(is_null($identity) || $identity == ""){
+      //Not logged in. Redirect.
+       header('Location: http://west.wwu.edu/stcsp/stc000/CAS/buying.asp');
+    }else{
+        $_SESSION['uid'] = $identity;
+    }
   }
 
 ?>
@@ -28,7 +27,7 @@
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta charset="utf-8">
-  <title>Boookstore Website</title>
+  <title>Bookstore Website</title>
   <meta name="generator" content="Bootply" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel="icon" type="image/png" href="images/icon.ico" type="image/icon">
