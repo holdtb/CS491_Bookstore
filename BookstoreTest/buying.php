@@ -61,8 +61,6 @@
               <li class="nav-divider"></li>
               <li><a href="view_offers.php"><i class="glyphicon glyphicon-inbox" style="color:#6f5499;"></i> View Offers</a></li>
               <li class="nav-divider"></li>
-              <li><a href="about.php"><i class="glyphicon glyphicon-info-sign" style="color:#11dd11;"></i> About</a></li>
-              <li class="nav-divider"></li>
               <li><a href="#"><i class="glyphicon glyphicon-exclamation-sign" style="color:#dd1111;"></i> Logout</a></li>
             </ul>
             <?php
@@ -132,34 +130,51 @@
         }
 
         
-        $recent_query = "SELECT * FROM ORDERS ORDER BY timestamp DESC";
+        $recent_query = "SELECT * FROM ORDERS ORDER BY timestamp DESC LIMIT 5";
         $result = $conn->query($recent_query);
 
         if ($result->num_rows > 0) {
-          while($row = $result->fetch_assoc()) {
+            while($row = $result->fetch_assoc()) {
 
-            /* Get the Book Title and price */
-            $isbn = $row["isbn"];
-            $book_query = "SELECT * FROM BOOKS WHERE isbn = '$isbn'";
-            $book_result = $conn->query($book_query);
-            while($book_row = $book_result->fetch_assoc()){
-              $title = $book_row["title"];
-              $thumburl = $book_row["thumbnail"];
-            }
-                   
+              /* Get the Book Title and price */
+              $order_id_num = $row["orderID"];
+              $isbn = $row["isbn"];
+              $price = $row["price"];
+              $condition = $row["condition"];
 
-           echo '<div class="col-md-4 col-sm-6">
-                     <div class="panel panel-default">
-                       <div class="panel-heading"><h4>' . $title . '</h4></div>
-                       <div class="panel-body">
-                        <p><img src="'  . $thumburl . '" class="img-thumbnail pull-right">Title: Test </br>Author: Test</p>
-                        <div class="clearfix"></div>
-                        <hr>
-                        More Info
+              $condition_sql = "SELECT * FROM CONDITIONS WHERE id='$condition'";
+              $result2 = mysqli_query($conn, $condition_sql);
+              $row2 = mysqli_fetch_array($result2);
+              $condition_str = $row2['condition'];
+
+
+              $author_sql = "SELECT * FROM AUTHORS WHERE isbn='$isbn'";
+              $result3 = mysqli_query($conn, $author_sql);
+              $row3 = mysqli_fetch_array($result3);
+              $author = $row3['author'];
+
+              $book_query = "SELECT * FROM BOOKS WHERE isbn = '$isbn'";
+              $book_result = $conn->query($book_query);
+              while($book_row = $book_result->fetch_assoc()){
+                $title = $book_row["title"];
+                $thumburl = $book_row["thumbnail"];
+              }
+
+              
+                     
+
+             echo '<div class="col-md-4 col-sm-6">
+                       <div class="panel panel-default">
+                         <div class="panel-heading"><h4>' . $title . '</h4></div>
+                         <div class="panel-body">
+                          <p><img src="'  . $thumburl . '" class="img-thumbnail pull-right">Condition: ' . $condition_str .'</br>Author: ' . $author . '</br>Price: $' . $price . '</br></p>
+                          <div class="clearfix"></div>
+                          <hr>
+                           <a href="' . 'offer.php?order='. $order_id_num . '">Buy Book</a>
+                        </div>
                       </div>
-                    </div>
-                  </div>';    
-          }
+                    </div>';    
+            }
         }    
     ?>
 
