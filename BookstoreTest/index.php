@@ -1,3 +1,10 @@
+<?php
+  session_start();
+  if(!is_null($_GET['uid'])){
+    $_SESSION['uid'] = $_GET['uid'];
+  }
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,8 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="CSCI 491 Bookstore Team">
-    <link rel="icon" href="images/icon.ico">
-
+    <link rel="icon" type="image/png" href="images/icon.ico" type="image/icon">
     <title>Home -- Bookstore</title>
 
     <!-- Bootstrap core CSS -->
@@ -28,8 +34,8 @@
               <nav>
                 <ul class="nav masthead-nav">
                   <li class="active"><a href="#">Home</a></li>
-                  <li><a href="landing.php">Buy</a></li>
-                  <li><a href="#">Sell</a></li>
+                  <li><a href="buying.php">Buy</a></li>
+                  <li><a href="selling.php">Sell</a></li>
                   <li><a href="about.php">About</a></li>
                 </ul>
               </nav>

@@ -37,7 +37,7 @@
               <ul class="nav navbar-nav">
                 <li><a href="index.php">Home</a></li>
                 <li><a href="landing.php">Buy</a></li>
-                <li><a href="#">Sell</a></li>
+                <li><a href="selling.php">Sell</a></li>
                 <li class="active"><a href="#">About</a></li>
               </ul>
             </div>
